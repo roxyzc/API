@@ -14,6 +14,7 @@ const createServer = () => {
   );
 
   routes(app);
+  return app;
 };
 
 export default createServer;

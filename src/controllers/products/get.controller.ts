@@ -1,6 +1,7 @@
 import { type Request, type Response, type NextFunction } from "express";
 import Product from "models/product.model";
 import { Op } from "sequelize";
+import crypto from "crypto-js";
 
 const getProduct = async (req: Request, res: Response, next: NextFunction) => {
   const { id } = req.params;
@@ -8,7 +9,11 @@ const getProduct = async (req: Request, res: Response, next: NextFunction) => {
     const product = await Product.findOne({
       where: { idProduct: id },
     });
-    res.status(200).json({ success: true, data: { product } });
+
+    res.status(200).json({
+      success: true,
+      data: { product: crypto.AES.encrypt(JSON.stringify(product), process.env.SALT as string).toString() },
+    });
   } catch (error) {
     next(error);
   }
@@ -42,7 +47,17 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
     if (page > Math.ceil(count / limit)) {
       Object.assign(pagination, { prev: { remaining: count } });
     }
-    res.status(200).json({ success: true, pagination, data: { products } });
+
+    const data =
+      products.rows.length === 0
+        ? products.rows
+        : crypto.AES.encrypt(JSON.stringify(products.rows), process.env.SALT as string).toString();
+
+    res.status(200).json({
+      success: true,
+      pagination,
+      data: { products: data },
+    });
   } catch (error) {
     next(error);
   }
