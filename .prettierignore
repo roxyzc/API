@@ -1,0 +1,11 @@
+dist
+node_modules
+yarn.lock
+tsconfig.json
+package.json
+.prettierrc
+.gitignore
+.eslintrc.json
+.eslintignore
+.vscode
+src/types
