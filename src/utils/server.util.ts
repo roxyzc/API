@@ -1,20 +1,20 @@
-import express, { type Application } from "express";
-import cors from "cors";
-import routes from "routes";
+// import express, { type Application } from "express";
+// import cors from "cors";
+// import routes from "routes";
 
-const createServer = () => {
-  const app: Application = express();
-  app.use(express.json());
-  app.use(express.urlencoded({ extended: true }));
-  app.use(
-    cors({
-      origin: true,
-      credentials: true,
-    })
-  );
+// const createServer = () => {
+//   const app: Application = express();
+//   app.use(express.json());
+//   app.use(express.urlencoded({ extended: true }));
+//   app.use(
+//     cors({
+//       origin: true,
+//       credentials: true,
+//     })
+//   );
 
-  routes(app);
-  return app;
-};
+//   routes(app);
+//   return app;
+// };
 
-export default createServer;
+// export default createServer;
