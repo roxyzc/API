@@ -24,10 +24,13 @@ yarn check-types ||
     false;
 )
 
+#build dist
 yarn build ||
 (
     echo "Your build failed, view the errors above";
     false;
 )
+
+sleep 5s;
 
 echo "Success commit"

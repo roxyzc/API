@@ -15,5 +15,6 @@ const createServer = () => {
         credentials: true,
     }));
     (0, routes_1.default)(app);
+    return app;
 };
 exports.default = createServer;

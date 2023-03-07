@@ -15,13 +15,17 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProducts = exports.getProduct = void 0;
 const product_model_1 = __importDefault(require("../../models/product.model"));
 const sequelize_1 = require("sequelize");
+const crypto_js_1 = __importDefault(require("crypto-js"));
 const getProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     try {
         const product = yield product_model_1.default.findOne({
             where: { idProduct: id },
         });
-        res.status(200).json({ success: true, data: { product } });
+        res.status(200).json({
+            success: true,
+            data: { product: crypto_js_1.default.AES.encrypt(JSON.stringify(product), process.env.SALT).toString() },
+        });
     }
     catch (error) {
         next(error);
@@ -55,7 +59,14 @@ const getProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         if (page > Math.ceil(count / limit)) {
             Object.assign(pagination, { prev: { remaining: count } });
         }
-        res.status(200).json({ success: true, pagination, data: { products } });
+        const data = products.rows.length === 0
+            ? products.rows
+            : crypto_js_1.default.AES.encrypt(JSON.stringify(products.rows), process.env.SALT).toString();
+        res.status(200).json({
+            success: true,
+            pagination,
+            data: { products: data },
+        });
     }
     catch (error) {
         next(error);
