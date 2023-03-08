@@ -18,7 +18,7 @@
   "husky": {
     "hooks": {
       "pre-commit": "yarn pretty-quick --staged ng lint ng test",
-      "pre-push": "ng build --aot true"
+      "pre-push": "ng dist --aot true"
     }
   },
   "devDependencies": {
