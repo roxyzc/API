@@ -25,6 +25,7 @@ const updateProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, func
             }
             return data;
         }));
+        console.log("test");
         if (product === null)
             return res.status(404).json({ success: false, error: { message: "product not found" } });
         return res.status(200).json({ success: true, data: { message: "success", product } });

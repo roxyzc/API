@@ -12,7 +12,6 @@ const updateProduct = async (req: Request, res: Response, next: NextFunction): P
       }
       return data;
     });
-    console.log("test");
     if (product === null) return res.status(404).json({ success: false, error: { message: "product not found" } });
     return res.status(200).json({ success: true, data: { message: "success", product } });
   } catch (error) {
