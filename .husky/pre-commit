@@ -17,12 +17,6 @@ yarn check-lint ||
     false;
 )
 
-#build dist
-yarn build ||
-(
-    echo "Your build failed, view the errors above";
-    false;
-)
 
 #check tsconfig
 yarn check-types ||
@@ -31,5 +25,11 @@ yarn check-types ||
     false;
 )
 
+#build dist
+yarn build ||
+(
+    echo "Your build failed, view the errors above";
+    false;
+)
 
 echo "Success commit"

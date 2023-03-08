@@ -39,6 +39,16 @@ const schema = {
                 .label("Nama Product"),
             harga: joi_1.default.number().integer().min(0).strict().required().label("Harga"),
         }),
+        update: joi_1.default.object({
+            namaProduct: joi_1.default
+                .string()
+                .trim()
+                .min(1)
+                .max(30)
+                .regex(/^[\w\s]+$/)
+                .label("Nama Product"),
+            harga: joi_1.default.number().integer().min(0).strict().label("Harga"),
+        }),
     },
 };
 exports.schema = schema;
