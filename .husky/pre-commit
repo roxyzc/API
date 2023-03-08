@@ -17,13 +17,6 @@ yarn check-lint ||
     false;
 )
 
-#check tsconfig
-yarn check-types ||
-(
-    echo "Failed type check. Make the changes require above, add changes and try to commit again";
-    false;
-)
-
 #build dist
 yarn build ||
 (
@@ -31,6 +24,12 @@ yarn build ||
     false;
 )
 
-sleep 5s;
+#check tsconfig
+yarn check-types ||
+(
+    echo "Failed type check. Make the changes require above, add changes and try to commit again";
+    false;
+)
+
 
 echo "Success commit"

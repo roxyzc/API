@@ -46,6 +46,10 @@ Product.init(
         product.createdAt = time;
         product.updatedAt = time;
       },
+      beforeUpdate: (product) => {
+        const time = Number(new Date().getTime());
+        product.updatedAt = time;
+      },
     },
     modelName: "product",
     sequelize: db,
