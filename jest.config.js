@@ -5,5 +5,4 @@ module.exports = {
   testMatch: ["**/**/*.test.ts"],
   verbose: true,
   forceExit: true,
-  // moduleDirectories: ["node_modules", "./src"],
 };

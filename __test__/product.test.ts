@@ -1,12 +1,10 @@
-// import supertest from "supertest";
-// import createServer from "../src/utils/server.util";
+import request from "supertest";
+import server from "../src/server";
 
-// describe("test", () => {
-//   describe("test product", () => {
-//     it("coba", async () => {
-//       const id = "122";
-//       const request = await supertest(createServer).get(`http://localhost/api/product/${id}`);
-//       expect(request.statusCode).toBe(404);
-//     });
-//   });
-// });
+describe("test route", () => {
+  test("test product", async () => {
+    const id = "asdajsvdjav";
+    const res = await request(server).get(`/api/product/${id}`);
+    expect(res.statusCode).toBe(404);
+  });
+});

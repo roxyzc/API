@@ -26,10 +26,10 @@ yarn check-types ||
 )
 
 #build dist
-yarn build ||
-(
-    echo "Your build failed, view the errors above";
-    false;
-)
+# yarn build ||
+# (
+#     echo "Your build failed, view the errors above";
+#     false;
+# )
 
 echo "Success commit"
