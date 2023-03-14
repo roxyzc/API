@@ -10,9 +10,11 @@ const getProduct = async (req: Request, res: Response, next: NextFunction) => {
       where: { idProduct: id },
     });
 
+    const data =
+      product === null ? [] : crypto.AES.encrypt(JSON.stringify(product), process.env.SALT as string).toString();
     res.status(200).json({
       success: true,
-      data: { product: crypto.AES.encrypt(JSON.stringify(product), process.env.SALT as string).toString() },
+      data: { product: data },
     });
   } catch (error) {
     next(error);
@@ -56,7 +58,10 @@ const getProducts = async (req: Request, res: Response, next: NextFunction) => {
     res.status(200).json({
       success: true,
       pagination,
-      data: { products: data },
+      data: {
+        products: data,
+        // encrypt: JSON.parse(crypto.AES.decrypt(data as string, process.env.SALT as string).toString(crypto.enc.Utf8)),
+      },
     });
   } catch (error) {
     next(error);

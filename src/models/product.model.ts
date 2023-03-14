@@ -5,6 +5,8 @@ interface IProductModel {
   idProduct?: string;
   namaProduct: string;
   harga: number;
+  stok: number;
+  image: string;
   createdAt?: number;
   updatedAt?: number;
 }
@@ -28,6 +30,14 @@ Product.init(
     },
     harga: {
       type: DataTypes.BIGINT,
+      allowNull: false,
+    },
+    stok: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+    image: {
+      type: DataTypes.STRING,
       allowNull: false,
     },
     createdAt: {

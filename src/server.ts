@@ -32,8 +32,6 @@ app.use(
 );
 
 routes(app);
-const server = app.listen(port, () => {
+app.listen(port, () => {
   logger.info(`Server is listening on port ${port}`);
 });
-
-export default server;
