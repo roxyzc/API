@@ -38,6 +38,7 @@ const schema = {
         .regex(/^[\w\s]+$/)
         .label("Nama Product"),
       harga: joi.number().integer().min(0).strict().label("Harga"),
+      stok: joi.number().integer().min(1).strict().label("Stok"),
     }),
   },
   decrypt: joi.object({
