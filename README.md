@@ -13,3 +13,4 @@
 | DB_USER   | root                 |
 | DB_HOST   | localhost            |
 | DB_DRIVER | mysql                |
+| SALT      | RAHASIA              |
