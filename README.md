@@ -1,18 +1,20 @@
-# Project #
+# Project
 
-### **Download** ###
+### **Download**
+
 ```
 yarn install
 ```
 
-### **Documentation** ###
+### **Documentation**
+
 ```
 https://documenter.getpostman.com/view/19500855/2s93Juv3wB
 ```
-> Click ***[Here](https://documenter.getpostman.com/view/19500855/2s93Juv3wB)*** to visit the API documentation
 
+> Click **_[Here](https://documenter.getpostman.com/view/19500855/2s93Juv3wB)_** to visit the API documentation
 
-### **ENV** ###
+### **ENV**
 
 | KEY       | VALUE                |
 | --------- | -------------------- |
