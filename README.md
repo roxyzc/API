@@ -5,11 +5,10 @@
 yarn install
 ```
 
-### ***Documentation*** ###
+### ***[Documentation](https://documenter.getpostman.com/view/19500855/2s93Juv3wB)*** ###
 ```
 https://documenter.getpostman.com/view/19500855/2s93Juv3wB
 ```
-<p>Click<a href="https://documenter.getpostman.com/view/19500855/2s93Juv3wB" target="_blank"> here</a></p>
 
 ### ***ENV*** ###
 
