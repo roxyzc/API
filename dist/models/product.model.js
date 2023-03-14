@@ -22,6 +22,14 @@ Product.init({
         type: sequelize_1.DataTypes.BIGINT,
         allowNull: false,
     },
+    stok: {
+        type: sequelize_1.DataTypes.INTEGER,
+        allowNull: false,
+    },
+    image: {
+        type: sequelize_1.DataTypes.STRING,
+        allowNull: false,
+    },
     createdAt: {
         type: sequelize_1.DataTypes.BIGINT,
         allowNull: true,

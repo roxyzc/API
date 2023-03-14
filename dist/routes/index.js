@@ -4,8 +4,12 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const errorHandler_middleware_1 = require("../middlewares/errorHandler.middleware");
+const get_route_1 = __importDefault(require("./decrypt/get.route"));
 const product_route_1 = __importDefault(require("./products/product.route"));
-const _routes = [["", product_route_1.default]];
+const _routes = [
+    ["", product_route_1.default],
+    ["", get_route_1.default],
+];
 const routes = (app) => {
     _routes.forEach((route) => {
         const [url, router] = route;

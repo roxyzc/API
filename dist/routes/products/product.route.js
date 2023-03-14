@@ -8,7 +8,7 @@ const put_controller_1 = require("../../controllers/products/put.controller");
 const delete_controller_1 = require("../../controllers/products/delete.controller");
 const route = (0, express_1.Router)();
 route.post("/product", (0, validateSchema_middleware_1.validateSchema)(validateSchema_middleware_1.schema.product.post), post_controller_1.postProduct);
-route.get("/products", get_controller_1.getProducts);
+route.get("/products", (0, validateSchema_middleware_1.validateSchema)(null, validateSchema_middleware_1.query.get), get_controller_1.getProducts);
 route
     .route("/product/:id")
     .get(get_controller_1.getProduct)

@@ -12,22 +12,16 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.postProduct = void 0;
-const product_model_1 = __importDefault(require("../../models/product.model"));
-const postProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { namaProduct, harga, stok } = req.body;
-    console.log(namaProduct, harga);
+exports.decrypt = void 0;
+const crypto_js_1 = __importDefault(require("crypto-js"));
+const decrypt = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
+    const { code } = req.body;
     try {
-        const findProduct = yield product_model_1.default.create({
-            namaProduct,
-            harga,
-            stok,
-            image: "https://cdn.discordapp.com/attachments/755224936414445629/1085156061255831582/no-image-icon-10.png",
-        });
-        res.status(200).json({ success: true, data: { Product: findProduct } });
+        const data = JSON.parse(crypto_js_1.default.AES.decrypt(code, process.env.SALT).toString(crypto_js_1.default.enc.Utf8));
+        res.status(200).json({ success: true, data });
     }
     catch (error) {
         next(error);
     }
 });
-exports.postProduct = postProduct;
+exports.decrypt = decrypt;

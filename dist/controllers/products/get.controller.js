@@ -22,9 +22,10 @@ const getProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, functio
         const product = yield product_model_1.default.findOne({
             where: { idProduct: id },
         });
+        const data = product === null ? [] : crypto_js_1.default.AES.encrypt(JSON.stringify(product), process.env.SALT).toString();
         res.status(200).json({
             success: true,
-            data: { product: crypto_js_1.default.AES.encrypt(JSON.stringify(product), process.env.SALT).toString() },
+            data: { product: data },
         });
     }
     catch (error) {
@@ -65,7 +66,9 @@ const getProducts = (req, res, next) => __awaiter(void 0, void 0, void 0, functi
         res.status(200).json({
             success: true,
             pagination,
-            data: { products: data },
+            data: {
+                products: data,
+            },
         });
     }
     catch (error) {

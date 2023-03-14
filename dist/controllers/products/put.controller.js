@@ -15,12 +15,12 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateProduct = void 0;
 const product_model_1 = __importDefault(require("../../models/product.model"));
 const updateProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
-    const { namaProduct, harga } = req.body;
+    const { namaProduct, harga, stok } = req.body;
     const { id } = req.params;
     try {
         const product = yield product_model_1.default.findOne({ where: { idProduct: id } }).then((data) => __awaiter(void 0, void 0, void 0, function* () {
             if (data !== null) {
-                yield (data === null || data === void 0 ? void 0 : data.update({ namaProduct, harga }));
+                yield (data === null || data === void 0 ? void 0 : data.update({ namaProduct, harga, stok }));
                 yield (data === null || data === void 0 ? void 0 : data.reload());
             }
             return data;
