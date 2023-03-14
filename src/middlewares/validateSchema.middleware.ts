@@ -47,8 +47,8 @@ const schema = {
 
 const query = {
   get: joi.object({
-    page: joi.number().integer().strict().min(1).label("Page"),
-    limit: joi.number().integer().strict().min(1).max(10).label("Limit"),
+    page: joi.number().integer().min(1).label("Page"),
+    limit: joi.number().integer().min(1).max(10).label("Limit"),
     search: joi.string().label("Search"),
   }),
 };
