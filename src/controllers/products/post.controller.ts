@@ -3,7 +3,6 @@ import Product from "models/product.model";
 
 const postProduct = async (req: Request, res: Response, next: NextFunction) => {
   const { namaProduct, harga, stok } = req.body;
-  console.log(namaProduct, harga);
   try {
     const findProduct = await Product.create({
       namaProduct,
