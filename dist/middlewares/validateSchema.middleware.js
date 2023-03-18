@@ -52,7 +52,7 @@ const schema = {
                 .regex(/^[\w\s]+$/)
                 .label("Nama Product"),
             harga: joi_1.default.number().integer().min(0).strict().label("Harga"),
-            stok: joi_1.default.number().integer().min(1).strict().label("Stok"),
+            stok: joi_1.default.number().integer().min(0).strict().label("Stok"),
         }),
     },
     decrypt: joi_1.default.object({
