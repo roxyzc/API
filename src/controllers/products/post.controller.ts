@@ -7,6 +7,7 @@ const postProduct = async (req: Request, res: Response, next: NextFunction) => {
     const findProduct = await Product.findOne({
       where: {
         namaProduct,
+        harga,
       },
     }).then(async (value) => {
       if (value === null) {

@@ -17,12 +17,27 @@ const product_model_1 = __importDefault(require("../../models/product.model"));
 const postProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { namaProduct, harga, stok } = req.body;
     try {
-        const findProduct = yield product_model_1.default.create({
-            namaProduct,
-            harga,
-            stok,
-            image: "https://cdn.discordapp.com/attachments/755224936414445629/1085156061255831582/no-image-icon-10.png",
-        });
+        const findProduct = yield product_model_1.default.findOne({
+            where: {
+                namaProduct,
+                harga,
+            },
+        }).then((value) => __awaiter(void 0, void 0, void 0, function* () {
+            if (value === null) {
+                const product = yield product_model_1.default.create({
+                    namaProduct,
+                    harga,
+                    stok,
+                    image: "https://cdn.discordapp.com/attachments/755224936414445629/1085156061255831582/no-image-icon-10.png",
+                });
+                return product;
+            }
+            yield value.update({
+                stok: value.getDataValue("stok") + Number(stok),
+            });
+            yield value.reload();
+            return value;
+        }));
         res.status(200).json({ success: true, data: { Product: findProduct } });
     }
     catch (error) {
