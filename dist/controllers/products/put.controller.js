@@ -14,15 +14,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.updateProduct = void 0;
 const product_model_1 = __importDefault(require("../../models/product.model"));
+const sequelize_1 = require("sequelize");
 const updateProduct = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { namaProduct, harga, stok } = req.body;
     const { id } = req.params;
     try {
-        const product = yield product_model_1.default.findOne({ where: { idProduct: id } }).then((data) => __awaiter(void 0, void 0, void 0, function* () {
+        const findProduct = yield product_model_1.default.findOne({
+            where: {
+                namaProduct,
+                harga,
+                [sequelize_1.Op.not]: {
+                    idProduct: id,
+                },
+            },
+        });
+        const product = yield product_model_1.default.findOne({ where: { idProduct: id } })
+            .then((data) => __awaiter(void 0, void 0, void 0, function* () {
             if (data !== null) {
-                yield (data === null || data === void 0 ? void 0 : data.update({ namaProduct, harga, stok }));
+                yield (data === null || data === void 0 ? void 0 : data.update({
+                    namaProduct,
+                    harga,
+                    stok: Number(stok) + (Number(findProduct === null || findProduct === void 0 ? void 0 : findProduct.getDataValue("stok")) | 0),
+                }));
                 yield (data === null || data === void 0 ? void 0 : data.reload());
             }
+            return data;
+        }))
+            .then((data) => __awaiter(void 0, void 0, void 0, function* () {
+            yield (findProduct === null || findProduct === void 0 ? void 0 : findProduct.destroy());
             return data;
         }));
         if (product === null)

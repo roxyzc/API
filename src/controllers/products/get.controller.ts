@@ -22,7 +22,7 @@ const getProduct = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 const getProducts = async (req: Request, res: Response, next: NextFunction) => {
-  const limit = Number.isNaN(Number(req.query.limit)) ? 10 : Number(req.query.limit);
+  const limit = Number.isNaN(Number(req.query.limit)) ? 50 : Number(req.query.limit);
   const page = Number.isNaN(Number(req.query.page)) ? 1 : Number(req.query.page);
   const search = req.query.search === undefined || req.query.search === "" ? "" : req.query.search;
   const start = (page - 1) * limit;
